@@ -5,20 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Letter</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 32px 16px;
-      font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans KR", sans-serif;
       background: #f5f5f5;
       color: #222;
     }
-    .page {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+
+    .page { max-width: 900px; margin: 0 auto; }
 
     .container {
       background: #ffffff;
@@ -40,7 +36,6 @@
       border-radius: 14px;
       overflow: hidden;
       background: #dddddd;
-      position: relative;
       aspect-ratio: 4 / 3;
       display: flex;
       align-items: center;
@@ -54,7 +49,7 @@
     }
 
     .letter-box {
-      margin-bottom: 32px;
+      margin-top: 8px;
       padding: 22px 16px 22px;
       border-radius: 14px;
       background: #faf7f3;
@@ -65,84 +60,28 @@
       white-space: pre-line;
     }
 
-    .reply-box {
-      margin-top: 8px;
-      padding: 18px 14px 20px;
-      border-radius: 14px;
-      border: 1px solid #e3e3e3;
-      background: #fcfcfc;
-    }
-    .field {
-      margin-bottom: 10px;
-    }
-    label {
-      display: block;
-      font-size: 12px;
-      color: #777;
-      margin-bottom: 3px;
-    }
-    input[type="text"],
-    textarea {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid #d3d3d3;
-      font-size: 14px;
-      font-family: inherit;
-      background: #fff;
-      resize: vertical;
-    }
-    textarea {
-      min-height: 90px;
-      line-height: 1.6;
-    }
-    input:focus,
-    textarea:focus {
-      outline: none;
-      border-color: #222;
-    }
-    .hint {
-      font-size: 11px;
-      color: #999;
-      margin-top: 6px;
-      line-height: 1.5;
-    }
-
-    .player-wrap {
-      margin-top: 24px;
-      padding: 10px 0 0;
-      border-top: 1px solid #eee;
-      font-size: 12px;
-      color: #777;
-    }
-
     @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
-      .container {
-        padding: 22px 14px 24px;
-      }
-      .letter-box {
-        font-size: 15px;
-      }
+      body { padding: 20px 10px; }
+      .container { padding: 22px 14px 24px; }
+      .letter-box { font-size: 15px; }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
     <main class="container">
-      <!-- 1) IMAGE -->
+
+      <!-- IMAGE -->
       <section>
         <div class="section-title">IMAGE</div>
         <div class="image-wrap">
-          <!-- ✅ 여기 src만 네 이미지 이름으로 바꾸면 됨 -->
-          <!-- 예: <img src="3_텍스트_잔디밭_가토.png" alt="letter image" /> -->
-          <img src="3_텍스트_잔디밭_가토.png" alt="letter image" />
+          <!-- 여기에 이미지 파일명만 넣으면 자동 표시됨 -->
+          <img src="https://github.com/pureforest23/jungchun.github.io/blob/main/3.%ED%85%8D%EC%8A%A4%ED%8A%B8_%EC%9E%94%EB%94%94%EB%B0%AD_%EA%B0%80%ED%86%A0.png?raw=true" alt="letter image" />
         </div>
       </section>
 
-      <!-- 2) LETTER -->
+      <!-- LETTER -->
       <section>
         <div class="section-title">LETTER</div>
         <div class="letter-box">
@@ -154,51 +93,8 @@ From. ○○
         </div>
       </section>
 
-      <!-- 3) REPLY (그냥 메모용 입력칸, 저장/복사 기능 없음) -->
-      <section>
-        <div class="section-title">REPLY</div>
-        <div class="reply-box">
-          <div class="field">
-            <label for="name">이름</label>
-            <input type="text" id="name" placeholder="이름을 적어주세요" />
-          </div>
-          <div class="field">
-            <label for="content">내용</label>
-            <textarea id="content" placeholder="답장을 적어주세요. (내용은 이 페이지에 저장되지 않습니다)"></textarea>
-          </div>
-          <p class="hint">
-            ※ 이 페이지에는 답글이 저장되지 않아요.<br>
-            &nbsp;&nbsp;&nbsp;쓴 내용을 복사해서 카카오톡이나 문자로 보내주면 됩니다.
-          </p>
-        </div>
-      </section>
-
-      <!-- 🎵 BGM 플레이어 -->
-      <section class="player-wrap">
-        <div>BACKGROUND MUSIC</div>
-        <!-- ✅ cozy-piano.mp3 는 지금 index.html과 같은 폴더에 있는 그 파일 이름 그대로 -->
-        <audio
-          id="bgm"
-          src="cozy-piano.mp3"
-          loop
-          controls
-        ></audio>
-      </section>
     </main>
   </div>
-
-  <script>
-    // 페이지 들어오면 살짝 볼륨 줄인 상태로 자동 재생 시도
-    window.addEventListener("load", () => {
-      const audio = document.getElementById("bgm");
-      if (!audio) return;
-      audio.volume = 0.6;
-      audio.play().catch(() => {
-        // 자동재생 막혔을 때는 그냥 조용히 두고, 사용자가 재생 버튼 누르면 됨
-        console.log("Autoplay blocked by browser – user needs to press play.");
-      });
-    });
-  </script>
 </body>
 </html>
 
