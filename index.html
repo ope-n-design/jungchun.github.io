@@ -364,9 +364,9 @@ From. ○○
         `이름: ${name || "익명"}\n날짜: ${date || "-"}\n\n${content}`;
 
       navigator.clipboard.writeText(copyText).then(() => {
-        alert("답글이 완료되었어요.\n내용이 복사되었으니 원하는 곳에 붙여넣어서 보내면 됩니다.");
+        alert("답글이 완료되었어요.");
       }).catch(() => {
-        alert("답글이 완료되었습니다.\n복사는 실패해서, 직접 드래그해서 복사해 주세요.");
+        alert("답글이 완료되었습니다.");
       });
 
       // 입력창 비우기
@@ -375,4 +375,5 @@ From. ○○
   </script>
 </body>
 </html>
+
 
